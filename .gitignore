@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.pyc
+
+# Optimiser run output. main.py writes new runs into Results/<category>/,
+# alongside the reference runs that are tracked here; L1d writes its
+# per-evaluation job directories under src/L1d_Outputs/.
+src/L1d_Outputs/
+src/L1d_init_scratch/
+Results/*/al_cht_[0-9][0-9][0-9][0-9]/population/population_gen_*.csv
+Results/*/*/pareto_holdtime_impactspeed/
+Results/*/*/postprocessing/
+Results/*/*/plots/
+
+# Raw L1d re-simulation traces: several GB per run, not distributed.
+# Regenerate with src/rerun_archive_l1d.py.
+Results/*/*/archive_rerun/L1d_Outputs/
+
+# Scratch directories some libraries create in the working directory
+outcmaes/
+PITOT3_Outputs/
+
+# CEA scratch files, written into the working directory by the gas models
+thermo.inp
+thermo.lib
+thermo.out
+trans.inp
+trans.lib
+trans.out
+tmp.inp
+tmp.out
+
+# pytest
+.pytest_cache/
+
+# Editor and local tooling
+.vscode/
+.idea/
+.~lock.*

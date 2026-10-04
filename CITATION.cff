@@ -1,0 +1,43 @@
+cff-version: 1.2.0
+title: >-
+  Multi-objective optimisation of the X2 expansion tube free-piston driver
+message: If you use this software, please cite it as below.
+type: software
+authors:
+  - family-names: Heffernan
+    given-names: Liam
+    affiliation: The University of Queensland
+license: MIT
+abstract: >-
+  Multi-objective CMA-ES for the X2 expansion tube free-piston driver,
+  maximising driver hold time while minimising piston impact speed subject
+  to a primary shock speed constraint. Candidate designs are evaluated with
+  the L1d4 quasi-one-dimensional flow solver. Infeasible offspring are
+  handled by the Arnold and Hansen (2012) covariance adaptation, and the
+  shock-speed constraint by an Augmented Lagrangian.
+keywords:
+  - expansion tube
+  - free-piston driver
+  - multi-objective optimisation
+  - CMA-ES
+  - constraint handling
+  - augmented Lagrangian
+preferred-citation:
+  type: article
+  title: >-
+    Designing Free-Piston Driver Fill Conditions Using Constrained
+    Multi-Objective Optimisation
+  authors:
+    - family-names: Heffernan
+      given-names: Liam
+      affiliation: The University of Queensland
+    - family-names: Herik
+      name-particle: van den
+      given-names: Toby J.
+      affiliation: The University of Queensland
+    - family-names: James
+      given-names: Christopher M.
+      affiliation: The University of Queensland
+  journal: Experiments in Fluids
+  status: submitted
+  year: 2026

@@ -1,0 +1,63 @@
+# Experiment configuration for the X2 free-piston driver optimisation.
+#
+# `experiments` is a list. main.py runs one entry per invocation, each in a
+# fresh subprocess, in list order; the run directory is numbered
+# automatically. To produce replicates of a configuration, repeat the entry
+# or re-run main.py with the same seed population.
+#
+# The single entry below is the configuration used for the runs in results/.
+#
+# Fields:
+#
+#   sim_type      Constraint-handling strategy. 'ArnoldCHT_AL' is the
+#                 Arnold & Hansen (2012) covariance adaptation, in which an
+#                 infeasible offspring is consumed before evaluation to
+#                 shrink its parent's covariance along the violated
+#                 direction (Eq. 6 and Eq. 7) and the slot is then dropped,
+#                 combined with Augmented Lagrangian handling of the
+#                 shock-speed constraint.
+#
+#   pop_size      Population size. MU = LAMBDA = pop_size.
+#
+#   step_size     Initial CMA-ES step size (sigma), in the normalised
+#                 [1, 2]^6 design space.
+#
+#   p4_treatment  How the upper p4 bound is enforced after mutation. Must be
+#                 null for the CHT family, which replaces bound repair
+#                 entirely.
+#
+#   al_tol        Initial tolerance for the Augmented Lagrangian constraint
+#                 g(x) = delta_vs1(x) - tol <= 0, in m/s. delta_vs1 is the
+#                 shortfall of the primary shock speed against the 3585 m/s
+#                 target, so a tolerance of 3585 leaves the constraint
+#                 inactive at the start of the run.
+#
+#   n_gen         Number of generations.
+#
+#   features      Optional toggles. Only the two used here are documented:
+#
+#                   al_tol_schedule: [start, end, start_gen, end_gen]
+#                       Tighten the tolerance over time: hold `start` until
+#                       `start_gen`, interpolate linearly to `end` over
+#                       [start_gen, end_gen], then hold `end`. The schedule
+#                       below leaves the constraint inactive for the first
+#                       100 generations, tightens to 100 m/s by generation
+#                       250, and holds it there for the rest of the run.
+#
+#                   psucc_sentinel_as_failure: true
+#                       Treat a failed L1d evaluation as an honest failure
+#                       rather than skipping it, so it contributes the usual
+#                       success-probability decay and step-size reduction.
+#                       This makes a sentinel information about an
+#                       infeasible region rather than noise to discard.
+
+experiments:
+  - sim_type: ArnoldCHT_AL
+    pop_size: 24
+    step_size: 0.1
+    p4_treatment: null
+    al_tol: 3585
+    n_gen: 500
+    features:
+      psucc_sentinel_as_failure: true
+      al_tol_schedule: [3585, 100.0, 100, 250]

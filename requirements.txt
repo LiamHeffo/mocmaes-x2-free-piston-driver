@@ -1,0 +1,20 @@
+# Python dependencies.
+#
+#   pip install -r requirements.txt
+#
+# Versions are pinned to those used for the runs in results/. Later versions
+# will very likely work; the pins are there so a published result can be
+# reproduced exactly.
+#
+# External requirement, not installable via pip: the L1d4 quasi-1D flow solver
+# from the gdtk / Eilmer suite (https://gdtk.uqcloud.net). The optimiser shells
+# out to the `l1d4-prep` and `l1d4` executables, which must be on $PATH. Note
+# that nothing here imports gdtk as a Python module, so a gdtk install is
+# needed only for those two binaries.
+
+deap==1.4.1
+cma==4.4.4
+numpy==1.26.4
+scipy==1.13.0
+matplotlib==3.8.2
+PyYAML==5.4.1
